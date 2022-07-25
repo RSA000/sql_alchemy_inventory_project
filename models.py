@@ -8,7 +8,7 @@ session = Session()
 Base = declarative_base()
 
 class Inventory(Base):
-    __tablename__ = 'inventory'
+    __tablename__ = 'products'
 
     product_id = Column(Integer, primary_key=True)
     product_name = Column(String)
@@ -22,7 +22,8 @@ class Inventory(Base):
                   \rDate_updated: {self.date_updated}"""
 
     def return_list(self):
-        return [self.product_id, self.product_name, self.product_price, self.product_quantity, str(self.date_updated)]
+        return [self.product_id, self.product_name,
+                 '$' + str(float(self.product_price/100)), self.product_quantity, str(self.date_updated).replace('-', '/')]
 
     def __gt__(self, other):
         if self.date_updated > other.date_updated:

@@ -49,9 +49,10 @@ def menu():
         \rINVENTORY MENU\n
         \rView Inventory: V
         \rAdd Product: A
-        \rBackup DB: B\n
+        \rBackup DB: B
+        \rQuit: Q \n
         \rEnter Choice: """).lower()
-        if choice in ['v', 'a', 'b']:
+        if choice in ['v', 'a', 'b', 'q']:
             return choice
         input('''\nInvalid Choice:\nPlease enter \'V\' to view inventory,\n \'A\' to add a product or\n \'B\' to backupt the database:
         \r Press Enter to continue ''')
@@ -81,7 +82,7 @@ def display_inventory():
 
 
 def add_product():
-    product_name = input('Please input your product name: ')
+    product_name = input('Please input your product name: ').title()
     sys('clear')
     price_error = True
     while price_error:
@@ -155,6 +156,8 @@ def app():
             sys('clear')
         elif choice == 'b':
             backup_database()
+        elif choice == 'q':
+            break
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
