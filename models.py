@@ -18,8 +18,14 @@ class Inventory(Base):
 
     def __repr__(self):
         return f"""\rProduct ID: {self.product_id}\n \rProduct Name: {self.product_name},
-                 \rProduct Quantity: {self.product_quantity},\n \rPrice: {self.product_price/100},
+                 \rProduct Quantity: {self.product_quantity},\n \rPrice: {'$'+str(self.product_price/100)},
                   \rDate_updated: {self.date_updated}"""
 
     def return_list(self):
-        return [self.product_id, self.product_name, self.product_quantity, self.product_price, str(self.date_updated)]
+        return [self.product_id, self.product_name, self.product_price, self.product_quantity, str(self.date_updated)]
+
+    def __gt__(self, other):
+        if self.date_updated > other.date_updated:
+            return True
+        else:
+            return False 
